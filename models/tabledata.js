@@ -1,0 +1,154 @@
+var mongoose = require('mongoose');
+
+var TableSchema = new mongoose.Schema({
+D1P0:{
+    type:String
+},
+D1P1:{
+    type:String
+},
+D1P2:{
+    type:String,
+},
+D1P3:{
+    type:String,
+},
+D1P4:{
+    type:String,
+},
+D1P5:{
+    type:String,
+},
+D1P6:{
+    type:String,
+},
+D2P0:{
+    type:String
+},
+D2P1:{
+    type:String
+},
+D2P2:{
+    type:String,
+},
+D2P3:{
+    type:String,
+},
+D2P4:{
+    type:String,
+},
+D2P5:{
+    type:String,
+},
+D2P6:{
+    type:String,
+},
+D3P0:{
+    type:String
+},
+D3P1:{
+    type:String
+},
+D3P2:{
+    type:String,
+},
+D3P3:{
+    type:String,
+},
+D3P4:{
+    type:String,
+},
+D3P5:{
+    type:String,
+},
+D3P6:{
+    type:String,
+},
+D4P0:{
+    type:String
+},
+D4P1:{
+    type:String
+},
+D4P2:{
+    type:String,
+},
+D4P3:{
+    type:String,
+},
+D4P4:{
+    type:String,
+},
+D4P5:{
+   type:String,
+},
+D4P6:{
+    type:String,
+},
+D5P0:{
+    type:String
+},
+D5P1:{
+    type:String
+},
+D5P2:{
+    type:String,
+},
+D5P3:{
+    type:String,
+},
+D5P4:{
+    type:String,
+},
+D5P5:{
+    type:String,
+},
+D5P6:{
+    type:String,
+},
+D6P0:{
+    type:String
+},
+D6P1:{
+    type:String
+},
+D6P2:{
+    type:String,
+},
+D6P3:{
+    type:String,
+},
+D6P4:{
+    type:String,
+},
+D6P5:{
+    type:String,
+},
+D6P6:{
+    type:String,
+},
+D7P0:{
+   type:String
+},
+D7P1:{
+    type:String
+},
+D7P2:{
+    type:String,
+},
+D7P3:{
+    type:String,
+},
+D7P4:{
+    type:String,
+},
+D7P5:{
+    type:String,
+},
+D7P6:{
+    type:String,
+},  
+});
+
+var Table = mongoose.model('Table', TableSchema);
+module.exports = Table;
