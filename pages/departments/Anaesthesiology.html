@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Table V01</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+    <script type="text/javascript">
+        function myFunction() {
+            var x = new Date(document.getElementById("myDate").value);
+                  //    var arr = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            
+               for(i=0;i<=6;i++){
+           document.getElementById(i).value = x.getDate() +"-" +(x.getMonth() +1) + "-" + x.getFullYear();
+            x.setDate(x.getDate() + 1);
+            }
+            }
+                    
+            </script>
+            <style>
+            .submit-button{
+                text-align: center;
+            }
+            
+            </style>
+    </head>
+    
+    <body>
+        <fieldset>
+            <div>
+                <button onclick=myFunction()>Start</button>
+                <input type="date" id="myDate"/>
+                </div>
+        </fieldset>
+    
+    <form action="/makeTimeTable" method="POST">
+    
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100">
+                    <table>
+                        <thead>
+                            <tr class="table100-head">
+                                <th class="column1">Date</th>
+                                <th class="column2">DUTY (GENERAL)</th>
+                                <th class="column2">DUTY (MORNING)</th>
+                                <th class="column3">DUTY (AFTERNOON)</th>
+                                <th class="column4">DUTY (NIGHT)</th>
+                                <th class="column5">ACADEMICS </th>
+                                <th class="column6">REMARKS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <input name="D1P0" type="text" id="0"/>
+                                    </div>
+                                </td>
+                                <td class="column2"><select name="D1P1">
+                                        <option value="NA">NA</option>
+                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                        <option value="AVAILABL">AVAILABLE</option>
+                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                    </select></td>
+                                    <td class="column3"><select name="D1P2">
+                                        <option value="NA">NA</option>
+                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                        <option value="AVAILABL">AVAILABLE</option>
+                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                    </select></td>
+                                    <td class="column4"><select name="D1P3">
+                                        <option value="NA">NA</option>
+                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                        <option value="AVAILABL">AVAILABLE</option>
+                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                    </select></td>
+                                    <td class="column5"><select name="D1P4">
+                                        <option value="NA">NA</option>
+                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                        <option value="AVAILABL">AVAILABLE</option>
+                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                </select></td>
+                                                <td class="column6"> <input name="D1P5" type="text" class='input-table' placeholder="Type here"></td>
+                                                <td class="column7"> <input name="D1P6"type="text" class='input-table' placeholder="remarks"></td>
+                                            </tr>
+                                            <tr>
+                                <td>
+                                    <div>
+                                        <input name="D2P0" type="text" id="1"/>
+                                    </div>
+                                </td>
+                                <td class="column2"><select name="D2P1">
+                                    <option value="NA">NA</option>
+                                    <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                    <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                    <option value="AVAILABL">AVAILABLE</option>
+                                    <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                    <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                    <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                    <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                    <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                    <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                    <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                    <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                    <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                    </select></td>
+                                    <td class="column3"><select name="D2P2">
+                                        <option value="NA">NA</option>
+                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                        <option value="AVAILABL">AVAILABLE</option>
+                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                    </select></td>
+                                    <td class="column4"><select name="D2P3">
+                                        <option value="NA">NA</option>
+                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                        <option value="AVAILABL">AVAILABLE</option>
+                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option> 
+                                    </select></td>
+                                    <td class="column5"><select name="D2P4">
+                                        <option value="NA">NA</option>
+                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                        <option value="AVAILABL">AVAILABLE</option>
+                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                </select></td>
+                                                <td class="column6"> <input name="D2P5" type="text" class='input-table' placeholder="Type here"></td>
+                                                <td class="column7"> <input name="D2P6"type="text" class='input-table' placeholder="remarks"></td>
+                                            </tr>
+                                            <tr>
+                                    
+                                <td>
+                                    <div>
+                                        <input name="D3P0" type="text" id="2"/>
+                                    </div>
+                                </td>
+                                <td class="column2"><select name="D3P1">
+                                    <option value="NA">NA</option>
+                                    <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                    <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                    <option value="AVAILABL">AVAILABLE</option>
+                                    <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                    <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                    <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                    <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                    <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                    <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                    <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                    <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                    <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column3"><select name="D3P2">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column4"><select name="D3P3">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column5"><select name="D3P4">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                                                        </select></td>
+                                                                                        <td class="column6"> <input name="D3.P5" type="text" class='input-table' placeholder="Type here"></td>
+                                                                                        <td class="column7"> <input name="D3P6"type="text" class='input-table' placeholder="remarks"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                <td>
+                                    <div>
+                                        <input name="D4P0" type="text" id="3"/>
+                                    </div>
+                                </td>
+                                <td class="column2"><select name="D4P1">
+                                    <option value="NA">NA</option>
+                                    <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                    <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                    <option value="AVAILABL">AVAILABLE</option>
+                                    <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                    <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                    <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                    <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                    <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                    <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                    <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                    <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                    <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column3"><select name="D4P2">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column4"><select name="D4P3">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column5"><select name="D4P4">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>                            </select></td>
+                                                                <td class="column6"> <input name="D4P5" type="text" class='input-table' placeholder="Type here"></td>
+                                                                <td class="column7"> <input name="D4P6"type="text" class='input-table' placeholder="remarks"></td>
+                                                            </tr>
+                                                            <tr>
+                                <td>
+                                    <div>
+                                        <input name="D5P0" type="text" id="4"/>
+                                    </div>
+                                </td>
+                                <td class="column2"><select name="D5P1">
+                                    <option value="NA">NA</option>
+                                    <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                    <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                    <option value="AVAILABL">AVAILABLE</option>
+                                    <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                    <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                    <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                    <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                    <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                    <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                    <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                    <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                    <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column3"><select name="D5P2">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column4"><select name="D5P3">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column5"><select name="D5P4">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>  
+                                                                                     </select></td>
+                                                                                     <td class="column6"> <input name="D5P5" type="text" class='input-table' placeholder="Type here"></td>
+                                                                                     <td class="column7"> <input name="D5P6"type="text" class='input-table' placeholder="remarks"></td>
+                                                                                 </tr>
+                                                                                 <tr>
+                                <td>
+                                    <div>
+                                        <input name="D6P0" type="text" id="5"/>
+                                    </div>
+                                </td>
+                                <td class="column2"><select name="D6P1">
+                                    <option value="NA">NA</option>
+                                    <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                    <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                    <option value="AVAILABL">AVAILABLE</option>
+                                    <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                    <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                    <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                    <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                    <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                    <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                    <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                    <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                    <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column3"><select name="D6P2">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                	<td class="column4"><select name="D6P3">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column5"><select name="D6P4">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>  
+                                                                                      </select></td>
+                                                                                      <td class="column6"> <input name="D6P5" type="text" class='input-table' placeholder="Type here"></td>
+                                                                                      <td class="column7"> <input name="D6P6"type="text" class='input-table' placeholder="remarks"></td>
+                                                                                  </tr>
+                                      <tr>
+                                <td>
+                                    <div>
+                                        <input name="D7P0" type="text" id="6"/>
+                                    </div>
+                                </td>
+                                <td class="column2"><select name="D7P1">
+                                    <option value="NA">NA</option>
+                                    <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                    <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                    <option value="AVAILABL">AVAILABLE</option>
+                                    <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                    <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                    <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                    <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                    <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                    <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                    <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                    <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                    <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column3"><select name="D7P2">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column4"><select name="D7P3">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>
+                                                    </select></td>
+                                                    <td class="column5"><select name="D7P4">
+                                                        <option value="NA">NA</option>
+                                                        <option value="NA (LEAVE)">NA (LEAVE)</option>
+                                                        <option value="NA (DUTY OFF)">NA (DUTY OFF)</option>
+                                                        <option value="AVAILABL">AVAILABLE</option>
+                                                        <option value="AVAIL (OT1)">AVAIL (OT1)</option>
+                                                        <option value="AVAIL (OT2)">AVAIL (OT2)</option>
+                                                        <option value="AVAIL (OT3)">AVAIL (OT3)</option>
+                                                        <option value="AVAIL (OT4)">AVAIL (OT4)</option>
+                                                        <option value="AVAIL (GOT)">AVAIL (GOT)</option>
+                                                        <option value="AVAIL (EOT)">AVAIL (EOT)</option>
+                                                        <option value="AVAIL (ICU)">AVAIL (ICU)</option>
+                                                        <option value="AVAIL (PAC)">AVAIL (PAC)</option>
+                                                        <option value="AVAIL (RELIEVER)">AVAIL (RELIEVER)</option>  
+                                                                                     </select></td>
+                                                                                     <td class="column6"> <input name="D7P5" type="text" class='input-table' placeholder="Type here"></td>
+                                                                                     <td class="column7"> <input name="D7P6"type="text" class='input-table' placeholder="remarks"></td>
+                                                                                 </tr>
+
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        
+                                                        </tbody>
+                                                        </table>
+                                                        <br>
+                                                        <div class="submit-button">
+                                                        <input type="submit" value="SUBMIT"><br>
+                                                        </div>
+                                                        </form>
+                                                        
+                                                        
+                                                        </div>
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
