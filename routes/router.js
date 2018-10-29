@@ -3,101 +3,15 @@ var router = express.Router();
 var User = require('../models/user');
 const path = require('path');
 var Table = require('../models/tabledata');
-var dept2;
+var dept2,user2;
+
+
+
 // GET route for reading data
 router.get('/', function (req, res, next) {
-
+  
   return res.send(path.join(__dirname + '/templateLogReg/index.html'));
 });
-
-//GET route for selecting time tables
-router.get('/selectDates',(req,res)=>{
-  res.render(path.join(__dirname + '/../pages/Dates.ejs'));
-
-})
-
-
-//GET route for displaying timetable data
-router.get('/gettimetable',(req,res,next)=>{
-  if(req.query.startdate &&
-    req.query.enddate){
-      var mysort= {Date : 1};
-  Table.find({
-     dept: dept2,
-    Date: { 
-      $gte:req.query.startdate,
-      $lte:req.query.enddate  
-    }
-    // Date: { $lte:req.query.enddate}
-  }).sort(mysort).then((tables) => {
-    // console.log(table.D1P1);
-  res.render(path.join(__dirname + '/../pages/generatett.ejs'),{
-    tables: tables
-  });
-  });
-}else{
-  console.log("Enter date");
-}
-})
-
-
-
-//Route to direct user to a department table.
-router.get('/department',(req,res,next)=>{
-  if(dept2 === 'bb'){
-    return res.render('/../pages/departments/Bloodbank.html');
-  }else if(dept2 === 'plgy'){
-    return res.sendFile(path.join(__dirname + '/../pages/departments/Pathology.html'));
-  }else if(dept2 === 'mblgy'){
-    return res.send(path.join(__dirname + '/../pages/departments/Microbilogy.html'));
-  }else if(dept2 === 'bchem'){
-    return res.send(path.join(__dirname + '/../pages/departments/Biochemistry.html'));
-  }else if(dept2 === 'cslty'){
-    return res.send(path.join(__dirname + '/../pages/departments/Casuality.html'));
-  }else if(dept2 === 'pstry'){
-    return res.send(path.join(__dirname + '/../pages/departments/Psychiatry.html'));
-  }else if(dept2 === 'dntry'){
-    return res.send(path.join(__dirname + '/../pages/departments/Dentistry.html'));
-  }else if(dept2 === 'rddiag'){
-    return res.send(path.join(__dirname + '/../pages/departments/Radiology.html'));
-  }else if(dept2 === 'anstia'){
-    return res.send(path.join(__dirname + '/../pages/departments/Anaesthesiology.html'));
-  }else if(dept2 === 'optmlgy'){
-    return res.send(path.join(__dirname + '/../pages/departments/Ophthalmology.html'));
-  }else if(dept2 === 'ent'){
-    return res.send(path.join(__dirname + '/../pages/departments/Ent.html'));
-  }else if(dept2 === 'dmtlgy'){
-    return res.send(path.join(__dirname + '/../pages/departments/Dermatology.html'));
-  }else if(dept2 === 'pdtrc'){
-    return res.send(path.join(__dirname + '/../pages/departments/Paediatrics.html'));
-  }else if(dept2 === 'opdcs'){
-    return res.send(path.join(__dirname + '/../pages/departments/Orthopaedics.html'));
-  }else if(dept2 === 'obagn'){
-    return res.send(path.join(__dirname + '/../pages/departments/OstetricsaAndGynecology.html'));
-  }else if(dept2 === 'gs'){
-    return res.send(path.join(__dirname + '/../pages/departments/Generalsurgery.html'));
-  }else if(dept2 === 'gm'){
-    return res.send(path.join(__dirname + '/../pages/departments/GeneralMedicine.html'));
-  }else if(dept2 === 'antmy'){
-    return res.send(path.join(__dirname + '/../pages/departments/Anatomy.html'));
-  }else if(dept2 === 'commed'){
-    return res.send(path.join(__dirname + '/../pages/departments/Communitymedicine.html'));
-  }else if(dept2 === 'formed'){
-    return res.send(path.join(__dirname + '/../pages/departments/Forensicmedicine.html'));
-  }else if(dept2 === 'pmcgy'){
-    return res.send(path.join(__dirname + '/../pages/departments/Pharmacology.html'));
-  }else if(dept2 === 'pslg'){
-    return res.send(path.join(__dirname + '/../pages/departments/Physiology.html'));
-  }
-   else{
-    return res.redirect('/profile');
-   }
-
-   
-  // return res.sendfile(path.join(__dirname + '/../pages/departments/Bloodbank.html'));
-})
-
-
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
@@ -130,7 +44,8 @@ router.post('/', function (req, res, next) {
         return next(error);
       } else {
          req.session.userId = user._id;
-
+         user2 = user;
+         dept2 = user.dept;
           return res.redirect('/profile');
       }
     });
@@ -144,8 +59,8 @@ router.post('/', function (req, res, next) {
         return next(err);
       } else {
         req.session.userId = user._id;
-        console.log(user.dept);
-         dept2 = user.dept
+         user2 = user;
+         dept2 = user.dept;
          console.log(dept2);   
         return res.redirect('/profile');
       }
@@ -157,15 +72,106 @@ router.post('/', function (req, res, next) {
   }
 })
 
+
+//GET route for selecting time tables
+router.get('/selectDates',(req,res)=>{
+  console.log(req.session.userId);
+  res.render(path.join(__dirname + '/../pages/Dates.ejs'));
+
+})
+
+
+//GET route for displaying timetable data
+router.get('/gettimetable',(req,res,next)=>{
+  if(req.query.startdate &&
+    req.query.enddate){
+      var mysort= {Date : 1};
+  Table.find({
+     dept: req.body.dept1,
+    Date: { 
+      $gte:req.query.startdate,
+      $lte:req.query.enddate  
+    }
+    // Date: { $lte:req.query.enddate}
+  }).sort(mysort).then((tables) => {
+    // console.log(table.D1P1);
+  res.render(path.join(__dirname + '/../pages/generatett.ejs'),{
+    tables: tables
+  });
+  });
+}else{
+  console.log("Enter date");
+}
+})
+
+
+
+//Route to direct user to a department table.
+router.get('/department',(req,res,next)=>{
+  console.log(dept2);
+  if(dept2 === 'bb'){
+    console.log("hello from bb");
+    return res.sendfile(path.join(__dirname+'/../pages/departments/Bloodbank.html'));
+  }else if(dept2 === 'plgy'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Pathology.html'));
+  }else if(dept2 === 'mblgy'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Microbiology.html'));
+  }else if(dept2 === 'bchem'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Biochemistry.html'));
+  }else if(dept2 === 'cslty'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Casualty.html'));
+  }else if(dept2 === 'pstry'){
+     return res.sendfile(path.join(__dirname + '/../pages/departments/Psychiatry.html'));
+  }else if(dept2 === 'dntry'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Dentistry.html'));
+  }else if(dept2 === 'rddiag'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Radiology.html'));
+  }else if(dept2 === 'anstia'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Anaesthesiology.html'));
+  }else if(dept2 === 'optmlgy'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Ophthalmology.html'));
+  }else if(dept2 === 'ent'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Ent.html'));
+  }else if(dept2 === 'dmtlgy'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Dermatology.html'));
+  }else if(dept2 === 'pdtrc'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Paediatrics.html'));
+  }else if(dept2 === 'opdcs'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Orthopaedics.html'));
+  }else if(dept2 === 'obagn'){
+    console.log("something");
+    return res.sendfile(path.join(__dirname + '/../pages/departments/ObstetricsaAndGynecology.html'));
+  }else if(dept2 === 'gs'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Generalsurgery.html'));
+  }else if(dept2 === 'gm'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/GeneralMedicine.html'));
+  }else if(dept2 === 'antmy'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Anatomy.html'));
+  }else if(dept2 === 'commed'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Communitymedicine.html'));
+  }else if(dept2 === 'formed'){
+    console.log("formed1");
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Forensicmedicine.html'));
+  }else if(dept2 === 'pmcgy'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Pharmacology.html'));
+  }else if(dept2 === 'pslg'){
+    return res.sendfile(path.join(__dirname + '/../pages/departments/Physiology.html'));
+  }
+  else{
+    return res.redirect('/profile');
+   }
+
+   
+  // return res.sendfile(path.join(__dirname + '/../pages/departments/Bloodbank.html'));
+})
+
+
+
+
+
 router.post('/makeTimeTable',(req,res)=>{
     
-  // Table.create(req.body,(err,user)=>{
-  //   if(err){
-  //     console.log(err)
-  //   }else{
-  //     console.log(user)
-  //     }
-  // })
+ 
   var tabl1 = new Table({
     Date: req.body.D1P0,
     P1: req.body.D1P1,
@@ -255,6 +261,7 @@ router.post('/makeTimeTable',(req,res)=>{
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {
+ 
   User.findById(req.session.userId)
     .exec(function (error, user) {
       if (error) {
@@ -269,7 +276,8 @@ router.get('/profile', function (req, res, next) {
         //  return res.send("/pages/profile.html");
         // return res.send(path.join('/templateLogReg/profile.html'));
        //return res.redirect('/routetoprofile');
-       console.log(user.dept);
+       
+        dept2 = user.dept;
        return res.sendFile(path.join(__dirname + '/../pages/profile.html'));
      
       }
