@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require('../models/user');
 const path = require('path');
 var Table = require('../models/tabledata');
-var dept2,user2;
+
 
 
 
@@ -44,8 +44,7 @@ router.post('/', function (req, res, next) {
         return next(error);
       } else {
          req.session.userId = user._id;
-         user2 = user;
-         dept2 = user.dept;
+         req.session.dept = user.dept;
           return res.redirect('/profile');
       }
     });
@@ -59,9 +58,8 @@ router.post('/', function (req, res, next) {
         return next(err);
       } else {
         req.session.userId = user._id;
-         user2 = user;
-         dept2 = user.dept;
-         console.log(dept2);   
+        req.session.dept = user.dept;
+         user2 = user;   
         return res.redirect('/profile');
       }
     });
@@ -75,7 +73,7 @@ router.post('/', function (req, res, next) {
 
 //GET route for selecting time tables
 router.get('/selectDates',(req,res)=>{
-  console.log(req.session.userId);
+  console.log(req.session);
   res.render(path.join(__dirname + '/../pages/Dates.ejs'));
 
 })
@@ -84,10 +82,10 @@ router.get('/selectDates',(req,res)=>{
 //GET route for displaying timetable data
 router.get('/gettimetable',(req,res,next)=>{
   if(req.query.startdate &&
-    req.query.enddate){
+    req.query.enddate && req.query.dept1){
       var mysort= {Date : 1};
   Table.find({
-     dept: req.body.dept1,
+     dept: req.session.dept,
     Date: { 
       $gte:req.query.startdate,
       $lte:req.query.enddate  
@@ -108,53 +106,53 @@ router.get('/gettimetable',(req,res,next)=>{
 
 //Route to direct user to a department table.
 router.get('/department',(req,res,next)=>{
-  console.log(dept2);
-  if(dept2 === 'bb'){
+  console.log(req.session.dept);
+  if(req.session.dept === 'bb'){
     console.log("hello from bb");
     return res.sendfile(path.join(__dirname+'/../pages/departments/Bloodbank.html'));
-  }else if(dept2 === 'plgy'){
+  }else if(req.session.dept === 'plgy'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Pathology.html'));
-  }else if(dept2 === 'mblgy'){
+  }else if(req.session.dept === 'mblgy'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Microbiology.html'));
-  }else if(dept2 === 'bchem'){
+  }else if(req.session.dept === 'bchem'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Biochemistry.html'));
-  }else if(dept2 === 'cslty'){
+  }else if(req.session.dept === 'cslty'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Casualty.html'));
-  }else if(dept2 === 'pstry'){
+  }else if(req.session.dept === 'pstry'){
      return res.sendfile(path.join(__dirname + '/../pages/departments/Psychiatry.html'));
-  }else if(dept2 === 'dntry'){
+  }else if(req.session.dept === 'dntry'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Dentistry.html'));
-  }else if(dept2 === 'rddiag'){
+  }else if(req.session.dept === 'rddiag'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Radiology.html'));
-  }else if(dept2 === 'anstia'){
+  }else if(req.session.dept === 'anstia'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Anaesthesiology.html'));
-  }else if(dept2 === 'optmlgy'){
+  }else if(req.session.dept === 'optmlgy'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Ophthalmology.html'));
-  }else if(dept2 === 'ent'){
+  }else if(req.session.dept === 'ent'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Ent.html'));
-  }else if(dept2 === 'dmtlgy'){
+  }else if(req.session.dept === 'dmtlgy'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Dermatology.html'));
-  }else if(dept2 === 'pdtrc'){
+  }else if(req.session.dept === 'pdtrc'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Paediatrics.html'));
-  }else if(dept2 === 'opdcs'){
+  }else if(req.session.dept === 'opdcs'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Orthopaedics.html'));
-  }else if(dept2 === 'obagn'){
+  }else if(req.session.dept === 'obagn'){
     console.log("something");
     return res.sendfile(path.join(__dirname + '/../pages/departments/ObstetricsaAndGynecology.html'));
-  }else if(dept2 === 'gs'){
+  }else if(req.session.dept === 'gs'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Generalsurgery.html'));
-  }else if(dept2 === 'gm'){
+  }else if(req.session.dept === 'gm'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/GeneralMedicine.html'));
-  }else if(dept2 === 'antmy'){
+  }else if(req.session.dept === 'antmy'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Anatomy.html'));
-  }else if(dept2 === 'commed'){
+  }else if(req.session.dept === 'commed'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Communitymedicine.html'));
-  }else if(dept2 === 'formed'){
+  }else if(req.session.dept === 'formed'){
     console.log("formed1");
     return res.sendfile(path.join(__dirname + '/../pages/departments/Forensicmedicine.html'));
-  }else if(dept2 === 'pmcgy'){
+  }else if(req.session.dept === 'pmcgy'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Pharmacology.html'));
-  }else if(dept2 === 'pslg'){
+  }else if(req.session.dept === 'pslg'){
     return res.sendfile(path.join(__dirname + '/../pages/departments/Physiology.html'));
   }
   else{
@@ -180,7 +178,7 @@ router.post('/makeTimeTable',(req,res)=>{
     P4: req.body.D1P4,
     P5: req.body.D1P5,
     P6: req.body.D1P6,
-    dept: dept2
+    dept: req.session.dept
   })
   var tabl2 = new Table({
     Date: req.body.D2P0,
@@ -190,7 +188,7 @@ router.post('/makeTimeTable',(req,res)=>{
     P4: req.body.D2P4,
     P5: req.body.D2P5,
     P6: req.body.D2P6,
-    dept: dept2
+    dept: req.session.dept
   })
   var tabl3 = new Table({
     Date: req.body.D3P0,
@@ -200,7 +198,7 @@ router.post('/makeTimeTable',(req,res)=>{
     P4: req.body.D3P4,
     P5: req.body.D3P5,
     P6: req.body.D3P6,
-    dept: dept2
+    dept: req.session.dept
   })
   var tabl4 = new Table({
     
@@ -211,7 +209,7 @@ router.post('/makeTimeTable',(req,res)=>{
     P4: req.body.D4P4,
     P5: req.body.D4P5,
     P6: req.body.D4P6,
-    dept: dept2
+    dept: req.session.dept
   })
 
   var tabl5 = new Table({
@@ -223,7 +221,7 @@ router.post('/makeTimeTable',(req,res)=>{
     P4: req.body.D5P4,
     P5: req.body.D5P5,
     P6: req.body.D5P6, 
-    dept: dept2
+    dept: req.session.dept
   })
   var tabl6 = new Table({
    
@@ -234,7 +232,7 @@ router.post('/makeTimeTable',(req,res)=>{
     P4: req.body.D6P4,
     P5: req.body.D6P5,
     P6: req.body.D6P6, 
-    dept: dept2
+    dept: req.session.dept
   })
   var tabl7 = new Table({
     
@@ -245,7 +243,7 @@ router.post('/makeTimeTable',(req,res)=>{
     P4: req.body.D7P4,
     P5: req.body.D7P5,
     P6: req.body.D7P6,
-    dept: dept2
+    dept: req.session.dept
   })
   tabl1.save();
   tabl2.save();
@@ -277,7 +275,7 @@ router.get('/profile', function (req, res, next) {
         // return res.send(path.join('/templateLogReg/profile.html'));
        //return res.redirect('/routetoprofile');
        
-        dept2 = user.dept;
+
        return res.sendFile(path.join(__dirname + '/../pages/profile.html'));
      
       }

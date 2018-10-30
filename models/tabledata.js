@@ -8,7 +8,7 @@ var TableSchema = new mongoose.Schema({
     P4:String,
     P5:String,
     P6:String,
-    dept:String,
+    dept:String
 // D2:{
 //     P0:String,
 //     P1:String,
