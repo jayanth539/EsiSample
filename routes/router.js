@@ -85,7 +85,7 @@ router.get('/gettimetable',(req,res,next)=>{
     req.query.enddate && req.query.dept1){
       var mysort= {Date : 1};
   Table.find({
-     dept: req.session.dept,
+    dept: req.query.dept1},{
     Date: { 
       $gte:req.query.startdate,
       $lte:req.query.enddate  
@@ -95,8 +95,10 @@ router.get('/gettimetable',(req,res,next)=>{
     // console.log(table.D1P1);
   res.render(path.join(__dirname + '/../pages/generatett.ejs'),{
     tables: tables
-  });
-  });
+  })
+  }).catch(function(error){
+    console.log('Error getting the posts');
+});
 }else{
   console.log("Enter date");
 }
@@ -106,7 +108,6 @@ router.get('/gettimetable',(req,res,next)=>{
 
 //Route to direct user to a department table.
 router.get('/department',(req,res,next)=>{
-  console.log(req.session.dept);
   if(req.session.dept === 'bb'){
     console.log("hello from bb");
     return res.sendfile(path.join(__dirname+'/../pages/departments/Bloodbank.html'));
